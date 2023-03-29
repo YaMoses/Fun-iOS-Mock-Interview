@@ -16,6 +16,7 @@ final class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action:#selector(handleTap(_:))))
     }
 }
 
@@ -41,5 +42,15 @@ private extension ViewController {
         
         // Select the relevant color button.
         selectedButton.alpha = 0.5
+    }
+    
+    @objc func handleTap(_ sender: UIGestureRecognizer) {
+        addView(with: selectedColor, at: sender.location(in: view))
+    }
+    
+    func addView(with color: UIColor, at location: CGPoint) {
+        let square = UIView(frame: CGRect(x: location.x, y: location.y, width: 50.0, height: 50.0))
+        square.backgroundColor = selectedColor
+        view.addSubview(square)
     }
 }

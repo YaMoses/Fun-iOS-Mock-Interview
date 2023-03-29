@@ -8,7 +8,7 @@
 import UIKit
 
 final class ViewController: UIViewController {
-
+    
     @IBOutlet var theButtons: [UIButton]!
     
     private var selectedColor: UIColor = .black
@@ -17,8 +17,11 @@ final class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
+}
 
-    
+//MARK: Action outlets
+private extension ViewController {
+
     @IBAction func theButtonsStamped(_ sender: UIButton) {
         // Extract stamp color from the buttons background color.
         guard let buttonColor = sender.backgroundColor else { return }
@@ -30,6 +33,7 @@ final class ViewController: UIViewController {
     
 }
 
+//MARK: Helper methods
 private extension ViewController {
     func updateButtonColors(selectedButton: UIButton) {
         // Deselect all the color buttons.

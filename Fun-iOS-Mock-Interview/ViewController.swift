@@ -12,6 +12,7 @@ final class ViewController: UIViewController {
     @IBOutlet var theButtons: [UIButton]!
     
     private var selectedColor: UIColor = .black
+    private var colorCount: [UIColor : Int] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,8 +50,18 @@ private extension ViewController {
     }
     
     func addView(with color: UIColor, at location: CGPoint) {
-        let square = UIView(frame: CGRect(x: location.x, y: location.y, width: 50.0, height: 50.0))
+        let square = UILabel(frame: CGRect(x: location.x, y: location.y, width: 50.0, height: 50.0))
         square.backgroundColor = selectedColor
+        square.textAlignment = .center
+        square.textColor = .white
+        
+        if let existingColor = colorCount[selectedColor] {
+            colorCount[selectedColor] = existingColor + 1
+            square.text = String(existingColor + 1)
+        }else {
+            square.text = "1"
+            colorCount[selectedColor] = 1
+        }
         view.addSubview(square)
     }
 }
